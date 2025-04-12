@@ -275,6 +275,8 @@ def parse_pcp(pcp_str):
     
     # Filter out unused variables and redundant instructions from the program
     sd_pgcl_prog.variables = {key: value for key, value in pcp_dict.items() if key in meaningful_vars}
+    if not sd_pgcl_prog.variables:
+        sd_pgcl_prog.variables['x'] = 0
     remove_redundant_instructions(sd_pgcl_prog.instructions, meaningful_vars)
     
     if len(pcp_dict)>1:
